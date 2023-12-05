@@ -4,3 +4,4 @@ data/
 mqtt/
 mosquitto/
 local_settings.py
+docker-compose.yaml
