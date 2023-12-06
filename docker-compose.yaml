@@ -1,0 +1,19 @@
+version: '3.3'
+networks:
+  mqtt_default:
+    external: true
+services:
+  radio:
+    container_name: radio
+    restart: on-failure
+    devices:
+      - /dev/dvb/adapter0
+    environment:
+      - RTL_DEVICE=/dev/dvb/adapter0
+      - FREQ=152007500
+      - DEBUG=True
+    image: norcom_radio:latest
+    volumes: 
+      - ./local_settings.py:/app/local_settings.py
+    networks:
+      mqtt_default:
