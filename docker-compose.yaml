@@ -7,9 +7,9 @@ services:
     container_name: radio
     restart: on-failure
     devices:
-      - /dev/dvb/adapter0
+      - ${RTL_PATH}
     environment:
-      - RTL_DEVICE=/dev/dvb/adapter0
+      - RTL_DEVICE=${RTL_PATH}
       - FREQ=152007500
       - DEBUG=True
     image: norcom_radio:latest

@@ -12,9 +12,8 @@ all: build run
 build:
 	@echo "Building image..."
 	docker build -t ${IMAGE}:latest .
+	docker push ghcr.io/forte-bin/${IMAGE}:latest
 deploy:
-	@echo "Launching container with RTL device at ${RTL_DEVICE}"
-	#docker run -d --device=${RTL_DEVICE} -e "RTL_DEVICE=${RTL_DEVICE}" -e FREQ=${FREQ}  --name ${CONTAINER} ${IMAGE}:latest
 	docker compose up -d
 debug:
 	@echo "Launching container with RTL device at ${RTL_DEVICE}"
