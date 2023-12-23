@@ -14,6 +14,6 @@ services:
       - DEBUG=True
     image: norcom_radio:latest
     volumes: 
-      - ./secrets
+      - ./secrets:/app/secrets
     networks:
       mqtt_default:

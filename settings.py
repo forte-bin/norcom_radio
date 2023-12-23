@@ -27,7 +27,7 @@ OUTPUT_FILE_FORMAT = "json"
 OUTPUT_FILE_KEEPALIVES = False
 
 try:
-    with open("/run/secrets/mqtt_password","r") as password_file:
+    with open("/app/secrets/mqtt_password","r") as password_file:
         MQTT = {
             'HOST': 'mqtt5',
             'PORT': 1883,
