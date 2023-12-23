@@ -2,8 +2,8 @@
 
 # Set RTL_DEVICE on the Env 
 # $ RTL_DEVICE=/dev/bus/usb/001/002 make run
-RTL_DEVICE='0bda:2838'
-export RTL_PATH=`./getradiopath.sh ${RTL_DEVICE}`
+RTL_DEVICE="0bda:2838"
+
 IMAGE=norcom_radio
 CONTAINER=norcom_radio
 FREQ=152007500
@@ -15,6 +15,7 @@ build:
 	docker build -t ${IMAGE}:latest .
 	docker push ghcr.io/forte-bin/${IMAGE}:latest
 deploy:
+	export RTL_PATH=`./getradiopath.sh ${RTL_DEVICE}`
 	docker compose up -d
 debug:
 	@echo "Launching container with RTL device at ${RTL_DEVICE}"
