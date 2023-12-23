@@ -26,8 +26,13 @@ OUTPUT_FILE_FORMAT = "json"
 # Write Pagergate keepalives to file
 OUTPUT_FILE_KEEPALIVES = False
 
-
 try:
-    from local_settings import *
-except ImportError:
+    with open("/run/secrets/mqtt_password","r") as password_file:
+        MQTT = {
+            'HOST': 'mqtt5',
+            'PORT': 1883,
+            'USER': 'pager_user',
+            'PASS': password_file.read().strip(),
+        }
+except FileNotFoundError:
     pass

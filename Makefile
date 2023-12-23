@@ -2,7 +2,8 @@
 
 # Set RTL_DEVICE on the Env 
 # $ RTL_DEVICE=/dev/bus/usb/001/002 make run
-RTL_DEVICE=/dev/dvb/adapter0
+RTL_DEVICE='0bda:2838'
+RTL_PATH=`./getradiopath.sh $RTL_DEVICE`
 IMAGE=norcom_radio
 CONTAINER=norcom_radio
 FREQ=152007500

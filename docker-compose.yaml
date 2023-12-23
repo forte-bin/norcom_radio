@@ -14,6 +14,6 @@ services:
       - DEBUG=True
     image: norcom_radio:latest
     volumes: 
-      - ./local_settings.py:/app/local_settings.py
+      - ./secrets
     networks:
       mqtt_default:
