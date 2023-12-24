@@ -17,6 +17,7 @@ all: build run
 build:
 	@echo "Building image..."
 	docker build -t ${IMAGE}:latest .
+push:
 	docker tag `docker images ${IMAGE}:latest -q` ghcr.io/forte-bin/${IMAGE}:latest
 	docker login ghcr.io -u forte-bin --password-stdin && \
 	docker push ghcr.io/forte-bin/${IMAGE}:latest
