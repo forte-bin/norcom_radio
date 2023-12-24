@@ -19,7 +19,7 @@ build:
 	docker build -t ${IMAGE}:latest .
 push:
 	docker tag `docker images ${IMAGE}:latest -q` ghcr.io/forte-bin/${IMAGE}:latest
-	docker login ghcr.io -u forte-bin --password-stdin && \
+	docker login ghcr.io && \
 	docker push ghcr.io/forte-bin/${IMAGE}:latest
 deploy:
 	@echo "RTL_PATH = ${RTL_PATH}"
