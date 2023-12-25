@@ -12,7 +12,7 @@ services:
       - RTL_DEVICE=${RTL_PATH}
       - FREQ=152007500
       - DEBUG=True
-    image: norcom_radio:latest
+    image: ghcr.io/forte-bin/norcom_radio:latest
     volumes: 
       - ./secrets:/app/secrets
     networks:
