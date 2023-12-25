@@ -38,3 +38,6 @@ clean:
 data: 
 	@echo "repeating data from raw input"
 	docker exec -it  `docker ps -q -f name=${CONTAINER}` "timeout 5 tail -20 app/raw|python3 /app/norcom_pager.py"
+dev:
+	@echo "RTL_PATH = ${RTL_PATH}"
+	docker compose -f docker-compose.debug.yaml up -d 

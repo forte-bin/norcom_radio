@@ -1,0 +1,19 @@
+version: '3.3'
+networks:
+  mqtt_default:
+    external: true
+services:
+  radio:
+    container_name: radio
+    restart: on-failure
+    devices:
+      - ${RTL_PATH}
+    environment:
+      - RTL_DEVICE=${RTL_PATH}
+      - FREQ=152007500
+      - DEBUG=True
+    image: ghcr.io/forte-bin/norcom_radio:latest
+    volumes: 
+      - ./secrets:/app/secrets
+    networks:
+      mqtt_default:
