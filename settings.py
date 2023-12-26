@@ -6,7 +6,7 @@ LOGFILE = None
 MQTT_ENABLE = False
 
 # Publish Pagergate keepalives to MQTT
-MQTT_PUBLISH_KEEPALIVES = True
+MQTT_PUBLISH_KEEPALIVES = False
 
 # MQTT Broker config
 MQTT = {
@@ -34,5 +34,6 @@ try:
             'USER': 'pager_user',
             'PASS': password_file.read().strip(),
         }
+        MQTT_ENABLE = True
 except FileNotFoundError:
     pass
