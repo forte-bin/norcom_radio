@@ -8,8 +8,7 @@ IMAGE=norcom_radio
 CONTAINER=norcom_radio
 FREQ=152007500
 
-#only support having one radio connected at a time
-export RTL_PATH=`./getradiopath.sh ${RTL_DEVICE_PROD} && ./getradiopath.sh ${RTL_DEVICE_DEBUG}`
+
 #export RTL_PATH_DEBUG=`./getradiopath.sh ${RTL_DEVICE}`
 
 all: build run
@@ -18,15 +17,12 @@ build:
 	@echo "Building image..."
 	docker build -t ${IMAGE}:latest .
 push:
-	docker tag `docker images ${IMAGE}:latest -q` ghcr.io/forte-bin/${IMAGE}:latest
 	docker login ghcr.io && \
 	docker push ghcr.io/forte-bin/${IMAGE}:latest
 deploy:
-	@echo "RTL_PATH = ${RTL_PATH}"
-	docker compose up -d
+	RTL_PATH=`./getradiopath.sh ${RTL_DEVICE_PROD}` docker compose up -d
 debug:
-	@echo "RTL_PATH = ${RTL_PATH}"
-	docker compose up 
+	RTL_PATH=`./getradiopath.sh ${RTL_DEVICE_DEBUG}` docker compose up 
 reload:
 	@echo "Copying files into container"
 	docker cp . ${CONTAINER}:/app
@@ -39,5 +35,4 @@ data:
 	@echo "repeating data from raw input"
 	docker exec -it  `docker ps -q -f name=${CONTAINER}` "timeout 5 tail -20 app/raw|python3 /app/norcom_pager.py"
 dev:
-	@echo "RTL_PATH = ${RTL_PATH}"
-	docker compose -f docker-compose.debug.yaml up -d 
+	RTL_PATH=`./getradiopath.sh ${RTL_DEVICE_DEBUG}` docker compose up -d 
