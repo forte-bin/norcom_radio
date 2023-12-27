@@ -15,7 +15,7 @@ all: build run
 
 build:
 	@echo "Building image..."
-	docker build -t ${IMAGE}:latest .
+	docker build -t ghcr.io/forte-bin/${IMAGE}:latest .
 push:
 	docker login ghcr.io && \
 	docker push ghcr.io/forte-bin/${IMAGE}:latest
