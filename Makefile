@@ -3,7 +3,7 @@
 # Set RTL_DEVICE on the Env 
 # $ RTL_DEVICE=/dev/bus/usb/001/002 make run
 RTL_DEVICE_PROD="0bda:2838"
-RTL_DEVICE_DEBUG="1d50:6089"
+RTL_DEVICE_DEBUG="0ccd:00d7"
 IMAGE=norcom_radio
 CONTAINER=norcom_radio
 FREQ=152007500
